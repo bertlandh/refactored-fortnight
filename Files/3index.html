@@ -7,12 +7,11 @@
 </head>
 <body>
   <h1>Index Page</h1>
-  <ul id="fileList"></ul>
 
   <script>
-    // Function to fetch files from the 'Files' folder and create links
+    // Function to fetch files from the 'Files' folder and print their names in the console
     function fetchFiles() {
-      fetch('./Files/')
+      fetch('./Files/') 
         .then(response => response.text())
         .then(data => {
           // Parse the HTML content to extract links
@@ -20,16 +19,10 @@
           const htmlDoc = parser.parseFromString(data, 'text/html');
           const links = htmlDoc.querySelectorAll('a');
 
-          // Create links for each file
-          const fileList = document.getElementById('fileList');
+          // Get file names and print them in the console
           links.forEach(link => {
             const fileName = link.getAttribute('href');
-            const listItem = document.createElement('li');
-            const fileLink = document.createElement('a');
-            fileLink.textContent = fileName;
-            fileLink.setAttribute('href', './Files/' + fileName);
-            listItem.appendChild(fileLink);
-            fileList.appendChild(listItem);
+            console.log(fileName);
           });
         })
         .catch(error => console.error('Error fetching files:', error));

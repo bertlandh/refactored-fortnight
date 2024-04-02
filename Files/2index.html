@@ -10,7 +10,7 @@
   <ul id="fileList"></ul>
 
   <script>
-    // Function to fetch files from the 'Files' folder and create links
+    // Function to fetch files from the 'Files' folder and display their names
     function fetchFiles() {
       fetch('./Files/')
         .then(response => response.text())
@@ -20,15 +20,12 @@
           const htmlDoc = parser.parseFromString(data, 'text/html');
           const links = htmlDoc.querySelectorAll('a');
 
-          // Create links for each file
+          // Get file names and display them
           const fileList = document.getElementById('fileList');
           links.forEach(link => {
             const fileName = link.getAttribute('href');
             const listItem = document.createElement('li');
-            const fileLink = document.createElement('a');
-            fileLink.textContent = fileName;
-            fileLink.setAttribute('href', './Files/' + fileName);
-            listItem.appendChild(fileLink);
+            listItem.textContent = fileName;
             fileList.appendChild(listItem);
           });
         })
