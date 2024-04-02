@@ -12,7 +12,7 @@
   <script>
     // Function to fetch files from the 'Files' folder and create links
     function fetchFiles() {
-      fetch('./Files/')
+      fetch('https://github.com/bertlandh/refactored-fortnight/Files/')
         .then(response => response.text())
         .then(data => {
           // Parse the HTML content to extract links
